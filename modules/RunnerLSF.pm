@@ -82,9 +82,9 @@ sub is_job_array_running
     ELEMENT_ID: for (my $j=0; $j<@$ids; $j++)
     {
 	my $id = $$ids[$j];
+	if ( !exists($$info{$id}) ) { next ELEMENT_ID; }
 	$jobs[$j]{id} = $$info{$id}{id};
 
-	if ( !exists($$info{$id}) ) { next ELEMENT_ID; }
 	# if we already have a checkpoint for this job and this info also has checkpoint
 	if ( exists($jobs[$j]{have_chkpnt}) && exists($$info{$id}{have_chkpnt}) )
 	{
